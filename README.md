@@ -1,2 +1,2 @@
 # tfl_lab1
-Lab1 on the Theory of Formal Languages, Dmitrii Santalov, IU9-51B, BMSTU
+Лабораторная работа №1 по теории формальных языков, Дмитрий Санталов, ИУ9-51Б
