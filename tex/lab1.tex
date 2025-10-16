@@ -1,0 +1,643 @@
+\documentclass[a4paper, 14pt]{extarticle}
+
+% Поля
+%--------------------------------------
+\usepackage{geometry}
+\geometry{a4paper,tmargin=2cm,bmargin=2cm,lmargin=3cm,rmargin=1cm}
+%--------------------------------------
+
+
+%Russian-specific packages
+%--------------------------------------
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc} 
+\usepackage[english, main=russian]{babel}
+%--------------------------------------
+
+\usepackage{textcomp}
+
+% Красная строка
+%--------------------------------------
+\usepackage{indentfirst}               
+%--------------------------------------             
+
+\newcommand{\T}{\mathcal{T}}
+
+%Graphics
+%--------------------------------------
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{wrapfig}
+%--------------------------------------
+
+% Полуторный интервал
+%--------------------------------------
+\linespread{1.3}                    
+%--------------------------------------
+
+%Выравнивание и переносы
+%--------------------------------------
+% Избавляемся от переполнений
+\sloppy
+% Запрещаем разрыв страницы после первой строки абзаца
+\clubpenalty=10000
+% Запрещаем разрыв страницы после последней строки абзаца
+\widowpenalty=10000
+%--------------------------------------
+
+%Списки
+\usepackage{enumitem}
+
+%Подписи
+\usepackage{caption} 
+
+%Гиперссылки
+\usepackage{hyperref}
+
+\hypersetup {
+	unicode=true
+}
+
+%Рисунки
+%--------------------------------------
+\DeclareCaptionLabelSeparator*{emdash}{~--- }
+\captionsetup[figure]{labelsep=emdash,font=onehalfspacing,position=bottom}
+%--------------------------------------
+
+\usepackage{tempora}
+
+
+%Листинги
+%--------------------------------------
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize, 
+  %basicstyle=\footnotesize\AnkaCoder,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks shoulbd only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=t,                    % sets the caption-position to bottom
+  inputencoding=utf8,
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\bf,       % keyword style
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  xleftmargin=25pt,
+  xrightmargin=25pt,
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  tabsize=2,                       % sets default tabsize to 8 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+%--------------------------------------
+
+%%% Математические пакеты %%%
+%--------------------------------------
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
+\usepackage{mathtools}                              % Добавляет окружение multlined
+\usepackage[perpage]{footmisc}
+%--------------------------------------
+
+%--------------------------------------
+%			НАЧАЛО ДОКУМЕНТА
+%--------------------------------------
+
+\begin{document}
+
+%--------------------------------------
+%			ТИТУЛЬНЫЙ ЛИСТ
+%--------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\newpage
+
+
+%Шапка титульного листа
+%--------------------------------------
+\vspace*{-60pt}
+\hspace{-65pt}
+\begin{minipage}{0.3\textwidth}
+\hspace*{-20pt}\centering
+\includegraphics[width=\textwidth]{emblem}
+\end{minipage}
+\begin{minipage}{0.67\textwidth}\small \textbf{
+\vspace*{-0.7ex}
+\hspace*{-6pt}\centerline{Министерство науки и высшего образования Российской Федерации}
+\vspace*{-0.7ex}
+\centerline{Федеральное государственное бюджетное образовательное учреждение }
+\vspace*{-0.7ex}
+\centerline{высшего образования}
+\vspace*{-0.7ex}
+\centerline{<<Московский государственный технический университет}
+\vspace*{-0.7ex}
+\centerline{имени Н.Э. Баумана}
+\vspace*{-0.7ex}
+\centerline{(национальный исследовательский университет)>>}
+\vspace*{-0.7ex}
+\centerline{(МГТУ им. Н.Э. Баумана)}}
+\end{minipage}
+%--------------------------------------
+
+%Полосы
+%--------------------------------------
+\vspace{-25pt}
+\hspace{-35pt}\rule{\textwidth}{2.3pt}
+
+\vspace*{-20.3pt}
+\hspace{-35pt}\rule{\textwidth}{0.4pt}
+%--------------------------------------
+
+\vspace{1.5ex}
+\hspace{-35pt} \noindent \small ФАКУЛЬТЕТ\hspace{80pt} <<Информатика и системы управления>>
+
+\vspace*{-16pt}
+\hspace{47pt}\rule{0.83\textwidth}{0.4pt}
+
+\vspace{0.5ex}
+\hspace{-35pt} \noindent \small КАФЕДРА\hspace{50pt} <<Теоретическая информатика и компьютерные технологии>>
+
+\vspace*{-16pt}
+\hspace{30pt}\rule{0.866\textwidth}{0.4pt}
+  
+\vspace{11em}
+
+\begin{center}
+\Large {\bf Лабораторная работа № 1} \\ 
+\large {\bf по курсу <<Теория формальных языков>>} \\
+% \large «Моделирование данных с использованием модели семантических объектов» 
+\end{center}\normalsize
+
+\vspace{8em}
+
+
+\begin{flushright}
+  {Студент группы ИУ9-51Б Санталов Д.А. \hspace*{15pt}\\ 
+  \vspace{2ex}
+  Преподаватель Непейвода А. Н.\hspace*{15pt}}
+\end{flushright}
+
+\bigskip
+
+\vfill
+ 
+
+\begin{center}
+\textsl{Москва 2025}
+\end{center}
+\end{titlepage}
+%--------------------------------------
+%		КОНЕЦ ТИТУЛЬНОГО ЛИСТА
+%--------------------------------------
+
+\renewcommand{\ttdefault}{pcr}
+
+\setlength{\tabcolsep}{3pt}
+\newpage
+\setcounter{page}{2}
+
+% Оглавление
+\tableofcontents
+\newpage
+
+\section{Постановка задачи}\label{Sect::task}
+По имеющейся SRS определить:
+
+\begin{enumerate}[topsep=0pt,parsep=-5pt]
+    \item завершимость;
+    \item конечность классов эквивалентности по НФ (для построения эквивалентностей считаем, что правила могут применяться в обе стороны). Если их конечное число, то построить минимальную систему переписывания, им соответствующую;
+    \item локальную конфлюэнтность и пополняемость по Кнуту-Бендиксу.
+\end{enumerate}
+
+По SRS $\T$ тем самым (исключая случай, когда она сразу локально конфлюэнтна
+или конечна и минимальна) строится другая SRS $\T'$, которая должна сохранять
+те же классы эквивалентности. Если исходная SRS завершима, то правила в $\T'$
+должны удовлетворять условию убывания левой части относительно правой по выбранному фундированному порядку $\preceq$.
+
+Исходная SRS:
+
+$babb \to bbbab$
+
+$baabb \to babbaab$ 
+
+$baaabb \to baabbaaab$ 
+
+$bbbb \to abab$ 
+
+$aaaa \to a$
+
+\textbf{Фазз-тестирование эквивалентности:} строится случайное слово $\omega$ и случайная цепочка переписываний его в $\omega'$ по $T$. Проверить, можно ли получить $\omega'$ из
+$\omega$ (или наоборот) в рамках правил $\T'$.
+
+\textbf{Метаморфное тестирование:} выбрать инварианты, которые должны сохраняться (либо монотонно изменяться) при переписывании в рамках $\T$. Породить случайную цепочку переписываний над случайным словом в $\T'$ и проверить выполнимость инвариантов. 
+
+\section{Основная часть}\label{Sect::realisation}
+
+\subsection{Завершимость}
+Исходная SRS незавершима, поскольку есть цикл: $w_1 babb \, bbw_2 \to w_1bb \, babb \, bw_2 \to w_1 bbbb \, babb \, w_2 \to w_1 \, bbbb \, bbbab w_2 \to w_1 a \, babbbb \, ab w_2 \to w_1' babbbb w_2'$.
+
+\subsection{Конечность классов эквивалентности}
+
+Рассмотрим слова: $b(aab)^+$, то есть слова вида: $baab, baabaab, baabaabaab, \ldots$. Поскольку таких слов бесконечно много, и к словам такого вида нельзя применить ни одно из правил, кроме $aaaa \leftrightarrow a$. Но, применяя это правило в обе стороны, не возникнет ситуации, когда мы получим слово, к которому можно будет применить одно из исходных правил (кроме, опять же, $aaaa \leftrightarrow a$). Отсюда: классов эквивалентности бесконечно. 
+
+\subsection{Локальная конфлюэнтность и пополняемость по Кнуту-Бендиксу}
+
+Система не локально конфлюэнтна, так как строка $bbbbb$ может быть редуцирована к двум разным нормальным формам: $bbbbb \to ababb \to abbbab$ и $bbbbb \to babab$.
+
+Пополним исходную систему по алгоритму Кнута-Бендикса и получим эквивалентную систему.
+
+Исходные правила:
+
+$bbbab \to babb$
+
+$babbaab \to baabb$
+
+$baabbaaab \to baaabb$
+
+$bbbb \to abab$
+
+$aaaa \to a$
+
+
+ \textbf{Шаг 1}.
+
+   • Рассмотрим неразрешимую критическую пару (babbbaab, bbbaabb)
+
+        Добавляем новое правило: $babbbaab \to bbbaabb$
+
+   • Рассмотрим неразрешимую критическую пару (bbbabb, ababbab)
+
+        Добавляем новое правило: $ababbab \to babbb$
+
+   • Рассмотрим неразрешимую критическую пару (bbabb, ababab)
+
+        Добавляем новое правило: $ababab \to bbabb$
+
+   • Рассмотрим неразрешимую критическую пару (babbbbb, bbbaabab)
+
+        Добавляем новое правило: $bbbaabab \to baababb$
+
+   • Рассмотрим неразрешимую критическую пару (baabbbaaab, babbaaabb)
+
+        Добавляем новое правило: $baabbbaaab \to babbaaabb$
+
+   • Рассмотрим неразрешимую критическую пару (baabbbbb, babbaaabab)
+
+        Добавляем новое правило: $babbaaabab \to baaababb$
+
+   • Рассмотрим неразрешимую критическую пару (baaabbbbb, baabbaaaabab)
+
+        Добавляем новое правило: $baabbabab \to bababb$
+
+   • Рассмотрим неразрешимую критическую пару (bbbabab, ababbbb)
+
+        Добавляем новое правило: $abaabab \to babbab$
+
+   • Рассмотрим неразрешимую критическую пару (bbabab, ababbb)
+
+        Добавляем новое правило: $bbabab \to ababbb$
+
+    Обновляем правило: $baabbabab \to bababb$ → $baaababbb \to bababb$
+
+   • Рассмотрим неразрешимую критическую пару (babab, ababb)
+
+        Добавляем новое правило: $babab \to ababb$
+
+    Обновляем правило: $ababab \to bbabb$ → $aababb \to bbabb$
+
+    Удаляем правило: $bbabab \to ababbb$
+
+    Обновляем правило: $baaababbb \to bababb$ → $baaababbb \to ababbb$
+
+
+ \textbf{Шаг 2}.
+
+   • Рассмотрим неразрешимую критическую пару (ababb, aabbabb)
+
+        Добавляем новое правило: $aabbabb \to ababb$
+
+    Обновляем правило: $bbbaabab \to baababb$ → $bbbaabab \to babbb$
+
+    Обновляем правило: $baaababbb \to ababbb$ → $babbabbb \to ababbb$
+
+    Обновляем правило: $babbaaabab \to baaababb$ → $babbaaabab \to babbabb$
+
+   • Рассмотрим неразрешимую критическую пару (abaabab, aaababbab)
+
+        Добавляем новое правило: $abbabbab \to babbab$
+
+   • Рассмотрим неразрешимую критическую пару (ababbab, aaababbb)
+
+        Добавляем новое правило: $abbabbb \to babbb$
+
+    Обновляем правило: $babbabbb \to ababbb$ → $bbabbb \to ababbb$
+
+   • Рассмотрим неразрешимую критическую пару (aabaabab, bbabbbb)
+
+        Добавляем новое правило: $bbaabab \to babbb$
+
+    Обновляем правило: $abbabbb \to babbb$ → $ababbb \to babbb$
+
+    Обновляем правило: $bbbaabab \to babbb$ → $ababbb \to babbb$
+
+   • Рассмотрим неразрешимую критическую пару (abaabaabab, babbabbbb)
+
+        Добавляем новое правило: $baabbab \to babbb$
+
+    Обновляем правило: $bbabbb \to ababbb$ → $bbabbb \to babbb$
+
+   • Рассмотрим неразрешимую критическую пару (ababbaabab, babbbbbb)
+
+        Добавляем новое правило: $baabab \to babbb$
+
+    Обновляем правило: $abaabab \to babbab$ → $babbb \to babbab$
+
+    Удаляем правило: $bbaabab \to babbb$
+
+   • Рассмотрим неразрешимую критическую пару (babbbaaabab, bbbaabbbbb)
+
+        Добавляем новое правило: $babbbaaabab \to babbb$
+
+    Удаляем правило: $ababbab \to babbb$
+
+    Удаляем правило: $abbabbab \to babbab$
+
+    Обновляем правило: $babbaaabab \to babbabb$ → $babbaaabab \to babbb$
+
+   • Рассмотрим неразрешимую критическую пару (ababbbaab, babaabb)
+
+        Добавляем новое правило: $bbbaabb \to babaabb$
+
+    Обновляем правило: $babbbaab \to bbbaabb$ → $babbbaab \to babaabb$
+
+   • Рассмотрим неразрешимую критическую пару (ababbbbaab, babbbaabb)
+
+        Добавляем новое правило: $babaabb \to abaabbb$
+
+    Обновляем правило: $bbbaabb \to babaabb$ → $bbbaabb \to abaabbb$
+
+    Обновляем правило: $babbbaab \to babaabb$ → $babbbaab \to abaabbb$
+
+   • Рассмотрим неразрешимую критическую пару (bbabbaab, aabaabb)
+
+        Добавляем новое правило: $aabaabb \to bbaabb$
+
+   • Рассмотрим неразрешимую критическую пару (bbabbbaab, aabbbaabb)
+
+        Добавляем новое правило: $abbaabbb \to abaabbb$
+
+   • Рассмотрим неразрешимую критическую пару (babbabbaab, abaabaabb)
+
+        Добавляем новое правило: $bbaabbb \to abaabbb$
+
+    Удаляем правило: $abbaabbb \to abaabbb$
+
+   • Рассмотрим неразрешимую критическую пару (babbabbbaab, abaabbbaabb)
+
+        Добавляем новое правило: $abaaabab \to abaabbb$
+
+   • Рассмотрим неразрешимую критическую пару (baabbbbaaab, babbabbaaabb)
+
+        Добавляем новое правило: $baaababaaab \to babbbaaabb$
+
+
+ \textbf{Шаг 3}.
+
+   • Рассмотрим неразрешимую критическую пару (abaabb, aabbaabb)
+
+        Добавляем новое правило: $aabbaabb \to abaabb$
+
+   • Рассмотрим неразрешимую критическую пару (bbaaabab, abaabbbb)
+
+        Добавляем новое правило: $bbaaabab \to abaabbb$
+
+    Обновляем правило: $babbaaabab \to babbb$ → $abaabbb \to babbb$
+
+    Обновляем правило: $babbbaaabab \to babbb$ → $abaabbb \to babbb$
+
+   • Рассмотрим неразрешимую критическую пару (babbaabb, bbabaabbb)
+
+        Добавляем новое правило: $baabbb \to babbb$
+
+    Удаляем правило: $abaabbb \to babbb$
+
+    Обновляем правило: $babaabb \to abaabbb$ → $babaabb \to babbb$
+
+    Удаляем правило: $bbaabbb \to abaabbb$
+
+    Обновляем правило: $bbbaabb \to abaabbb$ → $bbbaabb \to babbb$
+
+    Обновляем правило: $abaaabab \to abaabbb$ → $abaaabab \to babbb$
+
+    Обновляем правило: $babbbaab \to abaabbb$ → $babbbaab \to babbb$
+
+    Обновляем правило: $bbaaabab \to abaabbb$ → $bbaaabab \to babbb$
+
+    Обновляем правило: $baabbbaaab \to babbaaabb$ → $babbbaaab \to babbaaabb$
+
+   • Рассмотрим неразрешимую критическую пару (bbaabbaaab, aabaaabb)
+
+        Добавляем новое правило: $aabaaabb \to bbaaabb$
+
+    Обновляем правило: $baaababaaab \to babbbaaabb$ → $baaababaaab \to babbaaabbb$
+
+   • Рассмотрим неразрешимую критическую пару (abaabbbaaab, babaaabb)
+
+        Добавляем новое правило: $babbaaabb \to babaaabb$
+
+    Обновляем правило: $babbbaaab \to babbaaabb$ → $babbbaaab \to babaaabb$
+
+    Обновляем правило: $baaababaaab \to babbaaabbb$ → $baaababaaab \to babaaabbb$
+
+   • Рассмотрим неразрешимую критическую пару (baabbbb, baabaabbb)
+
+        Добавляем новое правило: $baaabab \to babbb$
+
+    Удаляем правило: $abaaabab \to babbb$
+
+    Удаляем правило: $bbaaabab \to babbb$
+
+    Обновляем правило: $baaababaaab \to babaaabbb$ → $babaaabb \to babaaabbb$
+
+   • Рассмотрим неразрешимую критическую пару (abaabbbaaab, bbabbaaabb)
+
+        Добавляем новое правило: $bbabaaabb \to babaaabb$
+
+   • Рассмотрим неразрешимую критическую пару (abaabbbaaab, bbbaaabb)
+
+        Добавляем новое правило: $bbbaaabb \to babaaabb$
+
+   • Рассмотрим неразрешимую критическую пару (baaababaabbb, babbbaaabbab)
+
+        Добавляем новое правило: $ababaaabbab \to babbb$
+
+   • Рассмотрим неразрешимую критическую пару (abaabbbaaab, ababbbaaabb)
+
+        Добавляем новое правило: $ababaaabb \to babaaabb$
+
+    Обновляем правило: $ababaaabbab \to babbb$ → $babaaabbab \to babbb$
+
+   • Рассмотрим неразрешимую критическую пару (baaabbabaaab, baabbabbbaaabb)
+
+        Добавляем новое правило: $baaabbabaaab \to babaaabb$
+
+
+ \textbf{Шаг 4}.
+
+   • Рассмотрим неразрешимую критическую пару (abaaabb, aabbaaabb)
+
+        Добавляем новое правило: $aabbaaabb \to abaaabb$
+
+   • Рассмотрим неразрешимую критическую пару (aabaaaabab, bbaaabbbb)
+
+        Добавляем новое правило: $abbabb \to babbb$
+
+    Обновляем правило: $aabbabb \to ababb$ → $babbb \to ababb$
+
+   • Рассмотрим неразрешимую критическую пару (babaaaabab, babaaabbb)
+
+        Добавляем новое правило: $babaaabb \to ababb$
+
+    Обновляем правило: $ababbb \to babbb$ → $bbabb \to ababb$
+
+    Обновляем правило: $abbabb \to babbb$ → $abbabb \to ababb$
+
+    Обновляем правило: $baabab \to babbb$ → $baabab \to ababb$
+
+    Обновляем правило: $baabbb \to babbb$ → $baabbb \to ababb$
+
+    Обновляем правило: $babbab \to babbb$ → $babbab \to ababb$
+
+    Обновляем правило: $bbabbb \to babbb$ → $bbabb \to ababb$
+
+    Обновляем правило: $baaabab \to babbb$ → $baaabab \to ababb$
+
+    Обновляем правило: $baabbab \to babbb$ → $baabbab \to ababb$
+
+    Обновляем правило: $babaabb \to babbb$ → $babaabb \to ababb$
+
+    Обновляем правило: $bbbaabb \to babbb$ → $bbbaabb \to ababb$
+
+    Обновляем правило: $babbbaab \to babbb$ → $abaabb \to ababb$
+
+    Обновляем правило: $bbbaaabb \to babaaabb$ → $bbbaaabb \to ababb$
+
+    Обновляем правило: $ababaaabb \to babaaabb$ → $bbabb \to ababb$
+
+    Обновляем правило: $babaaabbb \to babaaabb$ → $bbabb \to ababb$
+
+    Обновляем правило: $babbaaabb \to babaaabb$ → $babbaaabb \to ababb$
+
+    Обновляем правило: $babbbaaab \to babaaabb$ → $ababbaaab \to ababb$
+
+    Обновляем правило: $bbabaaabb \to babaaabb$ → $bbabb \to ababb$
+
+    Обновляем правило: $babaaabbab \to babbb$ → $bbabb \to ababb$
+
+    Обновляем правило: $baaabbabaaab \to babaaabb$ → $baaabbabaaab \to ababb$
+
+   • Рассмотрим неразрешимую критическую пару (baabbabbb, baaabbab)
+
+        Добавляем новое правило: $baaabbab \to ababb$
+
+    Обновляем правило: $aababb \to bbabb$ → $aababb \to ababb$
+
+    Удаляем правило: $abbabb \to ababb$
+
+    Обновляем правило: $aabaabb \to bbaabb$ → $ababb \to bbaabb$
+
+    Удаляем правило: $babaabb \to ababb$
+
+    Обновляем правило: $aabbaabb \to abaabb$ → $aabbaabb \to ababb$
+
+    Удаляем правило: $baaabbabaaab \to ababb$
+
+   • Рассмотрим неразрешимую критическую пару (abaabbaaab, aabbaaabb)
+
+        Добавляем новое правило: $abaaabb \to ababb$
+
+    Удаляем правило: $bbbaabb \to ababb$
+
+    Обновляем правило: $aabaaabb \to bbaaabb$ → $ababb \to bbaaabb$
+
+    Удаляем правило: $aabbaabb \to ababb$
+
+    Удаляем правило: $babaaabb \to ababb$
+
+    Обновляем правило: $aabbaaabb \to abaaabb$ → $aabbaaabb \to ababb$
+
+
+ \textbf{Шаг 5}.
+
+   • Рассмотрим неразрешимую критическую пару (baaababb, baaabbb)
+
+        Добавляем новое правило: $baaabbb \to ababb$
+
+    Удаляем правило: $bbbaaabb \to ababb$
+
+    Удаляем правило: $aabbaaabb \to ababb$
+
+    Удаляем правило: $babbaaabb \to ababb$
+
+
+ \textbf{Шаг 6}.
+
+Неразрешимых критических пар не осталось. 
+
+Эквивалентная система:
+
+$aaaa \to a$
+
+$bbbb \to abab$
+
+$babab \to ababb$
+
+$babbb \to ababb$
+
+$bbabb \to ababb$
+
+$bbbab \to babb$
+
+$aababb \to ababb$
+
+$abaabb \to ababb$
+
+$baabab \to ababb$
+
+$baabbb \to ababb$
+
+$babbab \to ababb$
+
+$bbaabb \to ababb$
+
+$abaaabb \to ababb$
+
+$baaabab \to ababb$
+
+$baaabbb \to ababb$
+
+$baabbab \to ababb$
+
+$babbaab \to baabb$
+
+$bbaaabb \to ababb$
+
+$baaabbab \to ababb$
+
+$ababbaaab \to ababb$
+
+$baabbaaab \to baaabb$
+
+\section{Тестирование}
+
+В качестве инвариантов для метаморфного тестирования были рассмотрены:
+\begin{enumerate}[topsep=0pt,parsep=-5pt]
+    \item Последняя буква в исходном слове и в слове, полученном при переписывании в рамках SRS, не меняется.
+    \item Число подряд идущих букв $a$ в конце слова по модулю 3 совпадает.
+    \item $(|w|_{ba} + |w|_{bb} + |w|_b)$ по модулю 2 не возрастает.
+    \item $|w|_{ab} + |w|_{bb} - |w|_b$ не возрастает.
+\end{enumerate}
+
+\end{document}
